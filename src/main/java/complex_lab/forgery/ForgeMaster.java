@@ -1,13 +1,16 @@
 package complex_lab.forgery;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import complex_lab.commands.FindCommand;
 import complex_lab.commands.SortCommand;
 import complex_lab.equipment.Equipment;
+import complex_lab.logger.BasicLogger;
 
 public class ForgeMaster {
+    private final BasicLogger logger = new BasicLogger("logs/fm_actions");
     private final List<Equipment> eq;
     
     Knight knight;
@@ -16,31 +19,52 @@ public class ForgeMaster {
     SortCommand sortCommand;
     FindCommand findCommand;
 
-    public ForgeMaster(List<Equipment> equipment) {
+    public ForgeMaster(List<Equipment> equipment) throws IOException {
         this.eq = equipment;
     }
 
-    public void createKnight(String knightType) {
+    public void createKnight(String knightType) throws IOException {
         this.knight = new Knight(knightType);
+        logger.recordAction("Created knight of type " + knightType + "\n");
     }
 
-    public void setSortCommand(SortCommand newSortCommand) {this.sortCommand = newSortCommand;}
-    public void setFindCommand(FindCommand newFindCommand) {this.findCommand = newFindCommand;}
+    public void setSortCommand(SortCommand newSortCommand) throws IOException {
+        this.sortCommand = newSortCommand;
+        logger.recordAction("Set sort command " + newSortCommand + "\n");
+    }
+    public void setFindCommand(FindCommand newFindCommand) throws IOException {
+        this.findCommand = newFindCommand;
+        logger.recordAction("Set find command " + newFindCommand + "\n");
+    }
 
-    public List<Equipment> executeSort() {return this.sortCommand.execute();}
-    public List<Equipment> executeFind() {return this.findCommand.execute();}
+    public List<Equipment> executeSort() throws IOException {
+        logger.recordAction("Executed sort command\n");
+        return this.sortCommand.execute();
+    }
+    public List<Equipment> executeFind() throws IOException {
+        logger.recordAction("Executed find command\n");
+        return this.findCommand.execute();
+    }
 
-    public List<Equipment> getAvailableEquipment() {return this.eq;}
-    public double getTotalPrice() {return this.eqPrice;}
+    public List<Equipment> getAvailableEquipment() throws IOException {
+        logger.recordAction("Requested available equipment. Request granted\n");
+        return this.eq;
+    }
+    public double getTotalPrice() throws IOException {
+        logger.close();
+        return this.eqPrice;
+    }
 
-    public void addEquipment(Equipment newEquipment) {
+    public void addEquipment(Equipment newEquipment) throws IOException {
         this.knight.addEquipment(newEquipment);
         calculateEquipmentPrice();
+        logger.recordAction("Added equipment " + newEquipment + "\n");
     }
 
-    public void removeEquipment(String eqType) {
+    public void removeEquipment(String eqType) throws IOException {
         this.knight.removeEquipment(eqType);
         calculateEquipmentPrice();
+        logger.recordAction("Removed equipment of type " + eqType + "\n");
     }
 
     public void calculateEquipmentPrice() {

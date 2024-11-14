@@ -4,6 +4,7 @@ import complex_lab.equipment.Equipment;
 import complex_lab.forgery.ForgeMaster;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SortByPriceTest {
     @Test
-    public void testExecute1() {
+    public void testExecute1() throws IOException {
         List<Equipment> eq = new ArrayList<>();
         eq.add(new Equipment("TS-1", "Templar sword", "Weapon", "Templars", 12, 310));
         eq.add(new Equipment("TH-1", "Templar helmet", "Headwear", "Templars", 18, 340));

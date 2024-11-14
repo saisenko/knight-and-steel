@@ -8,18 +8,18 @@ import complex_lab.commands.sorting.SortByPrice;
 import complex_lab.equipment.Equipment;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ForgeMasterTest {
 
     @Test
-    public void testConstructor() {
+    public void testConstructor() throws IOException {
         Equipment testEquipment = new Equipment("test", "test", "test", "test", 0, 0);
         List<Equipment> equipmentList = new ArrayList<>();
         equipmentList.add(testEquipment);
@@ -29,7 +29,7 @@ class ForgeMasterTest {
     }
 
     @Test
-    public void testCreateKnight() {
+    public void testCreateKnight() throws IOException {
         ForgeMaster testFM = new ForgeMaster(List.of(new Equipment("test", "test", "test", "test", 0, 0)));
 
         testFM.createKnight("a");
@@ -46,7 +46,7 @@ class ForgeMasterTest {
     }
 
     @Test
-    public void testSetSortCommand() {
+    public void testSetSortCommand() throws IOException {
         ForgeMaster testFM = new ForgeMaster(List.of(new Equipment("test", "test", "test", "test", 0, 0)));
 
         Equipment testEquipment = new Equipment("test", "test", "test", "test", 0, 0);
@@ -60,7 +60,7 @@ class ForgeMasterTest {
     }
 
     @Test
-    public void testSetFindCommand() {
+    public void testSetFindCommand() throws IOException {
         ForgeMaster testFM = new ForgeMaster(List.of(new Equipment("test", "test", "test", "test", 0, 0)));
 
         Equipment testEquipment = new Equipment("test", "test", "test", "test", 0, 0);
@@ -74,7 +74,7 @@ class ForgeMasterTest {
     }
 
     @Test
-    public void testExecuteSort() {
+    public void testExecuteSort() throws IOException {
         Equipment testEquipment1 = new Equipment("test", "test", "test", "test", 0, 10);
         Equipment testEquipment2 = new Equipment("test", "test", "test", "test", 0, 20);
         List<Equipment> equipmentList = new ArrayList<>();
@@ -91,7 +91,7 @@ class ForgeMasterTest {
     }
 
     @Test
-    public void testExecuteFind() {
+    public void testExecuteFind() throws IOException {
         Equipment testEquipment1 = new Equipment("test", "test", "test", "test", 0, 10);
         Equipment testEquipment2 = new Equipment("test", "test", "test", "test", 0, 20);
         List<Equipment> equipmentList = new ArrayList<>();
@@ -108,13 +108,13 @@ class ForgeMasterTest {
     }
 
     @Test
-    public void testGetTotalPrice1() {
+    public void testGetTotalPrice1() throws IOException {
         ForgeMaster testFM = new ForgeMaster(List.of(new Equipment("test", "test", "test", "test", 0, 10)));
         assertEquals(testFM.getTotalPrice(), 0);
     }
 
     @Test
-    public void testGetTotalPrice2() {
+    public void testGetTotalPrice2() throws IOException{
         ForgeMaster newTestFM = new ForgeMaster(new ForgeryInit().generateAvailableEquipment());
         newTestFM.createKnight("a");
 
@@ -125,7 +125,7 @@ class ForgeMasterTest {
     }
 
     @Test
-    public void testAddEquipment() {
+    public void testAddEquipment() throws IOException {
         ForgeMaster newTestFM = new ForgeMaster(new ForgeryInit().generateAvailableEquipment());
         newTestFM.createKnight("a");
 
@@ -138,7 +138,7 @@ class ForgeMasterTest {
     }
 
     @Test
-    public void testRemoveEquipment() {
+    public void testRemoveEquipment() throws IOException {
         ForgeMaster newTestFM = new ForgeMaster(new ForgeryInit().generateAvailableEquipment());
         newTestFM.createKnight("a");
 
@@ -152,7 +152,7 @@ class ForgeMasterTest {
     }
 
     @Test
-    public void testFindEquipmentByID() {
+    public void testFindEquipmentByID() throws IOException {
         ForgeMaster testFM = new ForgeMaster(new ForgeryInit().generateAvailableEquipment());
         Equipment testEquipment = new Equipment("TS-1", "Templar sword", "Weapon", "Templars", 12, 310);
 
@@ -160,6 +160,6 @@ class ForgeMasterTest {
         assertEquals(testFM.findEquipmentById("ts-1"), testEquipment);
         assertEquals(testFM.findEquipmentById("Ts-1"), testEquipment);
         assertEquals(testFM.findEquipmentById("tS-1"), testEquipment);
-        assertEquals(testFM.findEquipmentById("RR-1"), null);
+        assertNull(testFM.findEquipmentById("RR-1"));
     }
 }

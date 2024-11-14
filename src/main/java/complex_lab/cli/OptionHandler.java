@@ -1,5 +1,6 @@
 package complex_lab.cli;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,13 +21,13 @@ public class OptionHandler extends OptionProvider {
         this.fm = fm;
     }
 
-    public void displayAvailableEquipment() {
+    public void displayAvailableEquipment() throws IOException {
         for (Equipment eq : this.fm.getAvailableEquipment()) {
             System.out.println(eq);
         }
     }
 
-    public List<Equipment> handleCatalogueOption(String userChoice) {
+    public List<Equipment> handleCatalogueOption(String userChoice) throws IOException {
         List<Equipment> resultEq = new ArrayList<>();
         switch (userChoice) {
             // sort items
@@ -69,7 +70,7 @@ public class OptionHandler extends OptionProvider {
         return resultEq;
     }
 
-    public void handleKnightCreation() {
+    public void handleKnightCreation() throws IOException {
         this.displayAvailableKnightTypes();
         String knightType = this.getUserChoice();
         this.fm.createKnight(knightType);

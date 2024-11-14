@@ -1,13 +1,14 @@
 package complex_lab;
 
-import java.util.List;
-import java.util.Scanner;
-
 import complex_lab.cli.OptionHandler;
 import complex_lab.cli.OptionProvider;
 import complex_lab.equipment.Equipment;
 import complex_lab.forgery.ForgeMaster;
 import complex_lab.forgery.ForgeryInit;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void displayEq(List<Equipment> eq) {
@@ -17,7 +18,7 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("Welcome to the forgery!");
         System.out.println("Here you can create your very own knight.");
         System.out.println("Feel free to experiment!");

@@ -1,0 +1,16 @@
+Created knight of type b
+
+Requested available equipment. Request granted
+
+Added equipment Equipment[pieceID=BT-1, pieceName=Akaviri armor, pieceType=Armor, pieceAffiliation=Blades, pieceWeight=25.0, piecePrice=350.0]
+
+Requested available equipment. Request granted
+
+Added equipment Equipment[pieceID=BW-2, pieceName=Akaviri daikatana, pieceType=Weapon, pieceAffiliation=Blades, pieceWeight=15.0, piecePrice=350.0]
+
+Requested available equipment. Request granted
+
+Added equipment Equipment[pieceID=BL-1, pieceName=Akaviri boots, pieceType=Boots, pieceAffiliation=Blades, pieceWeight=8.0, piecePrice=320.0]
+
+Removed equipment of type BOOTS
+
